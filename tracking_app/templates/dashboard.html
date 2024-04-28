@@ -1,0 +1,34 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load jformat %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'style2.css' %}">
+{% endblock %}
+
+
+{% block contents %}
+<h1>Your Projects</h1>
+<h2>Total Hours : {{total_hours}}</h2>
+    {% for item in trackers %}
+<div class="row" style="margin-top: 40px">
+    <div class="column">
+        <a href="{% url 'handler' item.pk %}">{{item}}</a>
+    </div>
+    <div class="column">
+        <p>status : {% if item.is_stopped %} Stopped {% else %} In Progress {% endif %}</p>
+    </div>
+        <div class="column">
+        <p>started date : {{ item.datetime |jformat:"%Y / %m / %d" }}</p>
+    </div>
+      <div class="column">
+        <p>total minutes : {{item.total_minutes}}</p>
+    </div>
+      <div class="column">
+        <a href="{% url 'edit' item.pk %}">Edit</a>
+    </div>
+</div>
+
+    {% endfor %}
+{% endblock %}
+

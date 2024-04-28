@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+{% endblock %}
+
+{% block contents %}
+<div id="is-stopped" data-is-stopped="{{ item.is_stopped }}"></div>
+<div class="signin">
+    <div class="content">
+        <h2>Time Tracking</h2>
+        <h2>{{item}}</h2>
+        <form class="form" method="post">
+            {% csrf_token %}
+            <div class="inputBox">
+                {% if not stopped %}
+                <input type="submit" class="stop" name="stop_button" value="Stop" style="background: red;color: white">
+                {% else %}
+                <input type="submit" class="start" name="start_button" value="Start">
+                {% endif %}
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock contents %}
+

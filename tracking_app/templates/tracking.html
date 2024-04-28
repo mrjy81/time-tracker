@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block styles %}
+	<link rel="stylesheet" href="{% static 'style.css' %}">
+{% endblock %}
+
+{% block contents %}
+        <div class="signin">
+            <div class="content">
+                <h2>Time Tracking</h2>
+                <form class="form" method="post">
+                    {% csrf_token %}
+                    <div class="inputBox">
+                        {{ form.title }} <i>Title</i>
+                    </div>
+                    <div class="inputBox">
+                        <input type="submit" value="Start">
+                    </div>
+                </form>
+            </div>
+        </div>
+{% endblock %}
